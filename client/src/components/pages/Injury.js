@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react'
 const Injury = () => {
 
   const [injuries, setInjuries] = useState([{
+    part_of_body: "",
     type_of_injury: ""
   }])
 
@@ -31,6 +32,7 @@ const fetchAllInjuries = async () => {
         <h1>Injury</h1>
         {injuries.map((injury, index) => (
           <div key={index}>
+            <p>Part of Body: {injury.part_of_body}</p>
             <p>Type of Injury: {injury.type_of_injury}</p>
           </div>
         ))}

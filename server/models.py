@@ -19,6 +19,7 @@ class Injury(db.Model, SerializerMixin):
     __tablename__ = 'injuries'
 
     id = db.Column(db.Integer, primary_key=True)
+    part_of_body = db.Column(db.String)
     type_of_injury = db.Column(db.String)
 
     # Setting up relationships
