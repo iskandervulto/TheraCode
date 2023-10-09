@@ -30,7 +30,7 @@ const fetchAllStrengths = async () => {
   return (
     <div className="Strength">
     <header className="Strength-header">
-        <h1>strength</h1>
+        <h1>Strength</h1>
         {strengths.map((strength, index) => (
           <div key={index}>
             <p>Part of Body: {strength.part_of_body}</p>

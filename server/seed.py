@@ -200,8 +200,8 @@ if __name__ == '__main__':
 
         print("Seeding users")
         users = [
-            User(user_name="Iskander", user_age=25, injury=injuries[28], strengthening=strengthenings[1], flexibility=flexibilities[3], mobility=mobilities[4]),
-            User(user_name="Bridget", user_age=24,injury=injuries[20], strengthening=strengthenings[2], flexibility=flexibilities[4], mobility=mobilities[5])
+            User(user_name="Iskander", password="FinalProject123", injury=injuries[28], strengthening=strengthenings[1], flexibility=flexibilities[3], mobility=mobilities[4]),
+            User(user_name="Bridget", password="Tester123",injury=injuries[20], strengthening=strengthenings[2], flexibility=flexibilities[4], mobility=mobilities[5])
         ]
 
         db.session.add_all(users)

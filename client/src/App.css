@@ -1,5 +1,14 @@
 .App {
-    background-color: #fefefe;
     height: 100%;
     width: 100%;
+}
+
+#light{
+    background-color: white;
+    color: black;
+}
+
+#dark{
+    background-color: black;
+    color: white;
 }

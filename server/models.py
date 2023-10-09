@@ -114,7 +114,7 @@ class User(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     user_name = db.Column(db.String)
-    user_age = db.Column(db.Integer)
+    password = db.Column(db.String)
 
     # Setting up the relationships
 
