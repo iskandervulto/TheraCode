@@ -10,13 +10,15 @@ import Strength from './pages/Strength'
 import Mobility from './pages/Mobility'
 import Flexibility from './pages/Flexibility'
 import Profile from './pages/Profile'
+import SignUp from './pages/SignUp';
 import NavBar  from "./NavBar"
+import { AuthProvider } from '../Contexts/AuthContext';
 
 export const ThemeContext = createContext(null)
 
 function App() {
 
-const [theme, setTheme] = useState("dark")
+const [theme, setTheme] = useState("light")
 
 const toggleTheme = () => {
   setTheme((curr) => (curr === 'light' ? "dark" : "light"));
@@ -24,6 +26,7 @@ const toggleTheme = () => {
 
   return (
   
+  <AuthProvider>
   <ThemeContext.Provider value={{ theme, toggleTheme }}>
     <div className="App" id={theme}>
     <NavBar />
@@ -36,9 +39,11 @@ const toggleTheme = () => {
       <Route path="/mobility" element={<Mobility />} />
       <Route path="/flexibility" element={<Flexibility />} />
       <Route path="/profile" element={<Profile />} />
+      <Route path="/signup" element={<SignUp />} />
     </Routes>
     </div>
   </ThemeContext.Provider>
+  </AuthProvider>
   )
 }
 

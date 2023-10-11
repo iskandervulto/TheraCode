@@ -113,9 +113,12 @@ class Users(Resource):
         try:
             data = request.get_json()
             user = User(
-                price=data["price"],          #CHANGE THIS
-                vendor_id=data["vendor_id"],  #CHANGE THIS
-                sweet_id=data["sweet_id"]    #CHANGE THIS
+                username=data["username"],          
+                password=data["password"],  
+                injury_id=data["injury_id"],
+                strengthening_id=data["strengthening_id"], 
+                mobility_id=data["mobility_id"], 
+                flexibility_id=data["flexibility_id"], 
             )
             db.session.add(user)
             db.session.commit()

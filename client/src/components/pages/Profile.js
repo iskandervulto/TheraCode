@@ -1,9 +1,11 @@
 import React, { useState, useEffect } from 'react'
 
-const Profile = () => {
+import LoginForm from '../LoginForm';
+
+const Profile = ( ) => {
 
   const [users, setUsers] = useState([{
-    user_name: "",
+    username: "",
     password: "",
     injury: "",
     strengthening: "",
@@ -31,22 +33,28 @@ const fetchAllUsers = async () => {
 };
 
   return (
+    <>
     <div className="User">
     <header className="User-header">
         <h1>Profile</h1>
-        {users.map((user, index) => (
-          <div key={index}>
-            <p>Username: {user.user_name}</p>
-            <p>password: {user.password}</p>
-            <p>injury: {user.injury_id}</p>
-            <p>strengthening: {user.strengthening_id}</p>
-            <p>mobility: {user.mobility_id}</p>
-            <p>flexibility: {user.flexibility_id}</p>
-          </div>
-        ))}
+      <LoginForm />
     </header>
 </div>
+
+  </>
   )
 }
 
 export default Profile
+
+
+// {users.map((user, index) => (
+//   <div key={index}>
+//     <p>Username: {user.user_name}</p>
+//     <p>password: {user.password}</p>
+//     <p>injury: {user.injury_id}</p>
+//     <p>strengthening: {user.strengthening_id}</p>
+//     <p>mobility: {user.mobility_id}</p>
+//     <p>flexibility: {user.flexibility_id}</p>
+//   </div>
+// ))}
