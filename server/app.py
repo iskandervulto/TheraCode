@@ -1,7 +1,9 @@
 from models import db, Injury, Strengthening, Mobility, Flexibility, User, Therapist, UserTherapist
 from flask_migrate import Migrate
-from flask import Flask, request, make_response
+from flask import Flask, request, make_response, jsonify
 from flask_restful import Api, Resource
+from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 import os
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
@@ -17,6 +19,8 @@ migrate = Migrate(app, db)
 
 db.init_app(app)
 api = Api(app)
+
+
 
 @app.route('/')
 def index():
@@ -177,6 +181,17 @@ class UserTherapists(Resource):
         return make_response(user_therapists, 200)
 
 api.add_resource(UserTherapists, "/usertherapists")
+
+
+class UserTherapistById(Resource):
+
+    def get(self, id):
+        user_therapist = UserTherapist.query.filter(UserTherapist.id == id).one_or_none()
+        if user_therapist is None:
+            return make_response({'error': 'User Therapist not found'}, 404)
+        return make_response(user_therapist.to_dict(), 200)
+
+api.add_resource(UserTherapistById, "/usertherapists/<int:id>")
 
 
 

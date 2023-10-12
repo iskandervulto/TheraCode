@@ -120,7 +120,6 @@ class UserTherapist(db.Model, SerializerMixin):
             'user_id': self.user_id,
        
             'therapist_id': self.therapist_id,
-       
         }
 
 
