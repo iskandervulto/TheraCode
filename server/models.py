@@ -106,6 +106,24 @@ class Flexibility(db.Model, SerializerMixin):
         return f'<Flexibility {self.id}>'
 
 
+class UserTherapist(db.Model, SerializerMixin):
+    __tablename__ = 'user_therapists'
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("users.id"))
+    therapist_id = db.Column(db.Integer, db.ForeignKey("therapists.id"))
+    serialize_rules = ('-user.user_therapists', '-therapist.user_therapists',)
+
+    def to_dict(self):
+        # Customize the serialization output
+        return {
+            'user_id': self.user_id,
+       
+            'therapist_id': self.therapist_id,
+       
+        }
+
+
 class User(db.Model, SerializerMixin):
 
     # Setting up the table
@@ -122,56 +140,30 @@ class User(db.Model, SerializerMixin):
     strengthening_id = db.Column(db.Integer, db.ForeignKey("strengthenings.id"))
     mobility_id = db.Column(db.Integer, db.ForeignKey("mobilities.id"))
     flexibility_id = db.Column(db.Integer, db.ForeignKey("flexibilities.id"))
+    user_therapists = db.relationship('UserTherapist', backref='user')
 
     # Setting up serilization
 
-    serialize_rules = ("-injury.users", "-strengthening.users", "-mobility.users", "-flexibility.users")
+    serialize_rules = ("-injury.users", "-strengthening.users", "-mobility.users", "-flexibility.users", "-user_therapists")
 
-    def _repr_(self):
+    def __repr__(self):
         return f'<User {self.id}>'
 
+class Therapist(db.Model, SerializerMixin):
+    __tablename__ = 'therapists'
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    specialization = db.Column(db.String)
+
+    user_therapists = db.relationship('UserTherapist', backref='therapists')
+
+    serialize_rules = ("-users", "-user_therapists")
+
+    def __repr__(self):
+        return f'<Therapist {self.id}>'
 
 
 
-# class Trainer(db.Model, SerializerMixin):
-
-#     # Setting up the table
-
-#     __tablename__ = 'trainers'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     trainer_name = db.Column(db.String)
-#     trainer_speciality = db.Column(db.String)
-
-#     # Setting up the relationships
-
-#     sessions = db.relationship("Session", cascade="all, delete", backref="trainer")
-
-#     def _repr_(self):
-#         return f'<Trainer {self.id}>'
-
-
-
-# class Session(db.Model, SerializerMixin):
-
-#     # Setting up the table
-
-#     __tablename__ = 'sessions'
-
-#     id = db.Column(db.Integer, primary_key=True)
-#     session_date = db.Column(db.Date)
-#     session_time = db.Column(db.Time)
-#     trainer_id = db.Column(db.Integer, db.ForeignKey("trainers.id"))
-#     patient_id = db.Column(db.Integer, db.ForeignKey("users.id"))
-#     exercise_id = db.Column(db.Integer, db.ForeignKey("exercises.id"))
-
-#     # Setting up the relationships
-
-#     therapist = db.relationship("Trainer", backref="trainer_sessions")
-#     patient = db.relationship("User", foreign_keys=[patient_id], backref="patient_sessions")
-#     exercise = db.relationship("Exercise", backref="sessions")
-#     injury = db.relationship("Injury", backref="sessions")
-
-    def _repr_(self):
+def _repr_(self):
         return f'<Session {self.id}>'
 

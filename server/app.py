@@ -1,4 +1,4 @@
-from models import db, Injury, Strengthening, Mobility, Flexibility, User
+from models import db, Injury, Strengthening, Mobility, Flexibility, User, Therapist, UserTherapist
 from flask_migrate import Migrate
 from flask import Flask, request, make_response
 from flask_restful import Api, Resource
@@ -149,6 +149,34 @@ class UserById(Resource):
 
 
 api.add_resource(UserById, "/users/<int:id>")
+
+
+class Therapists(Resource):
+
+    def get(self):
+        therapists = [therapist.to_dict() for therapist in Therapist.query.all()]
+        return make_response(therapists, 200)
+
+api.add_resource(Therapists, "/therapists")
+
+
+class TherapistById(Resource):
+
+    def get(self, id):
+        therapist = Therapist.query.filter(Therapist.id == id).one_or_none()
+        if therapist is None:
+            return make_response({'error': 'Therapist not found'}, 404)
+        return make_response(therapist.to_dict(), 200)
+
+api.add_resource(TherapistById, "/therapists/<int:id>")
+
+class UserTherapists(Resource):
+
+    def get(self):
+        user_therapists = [usertherapist.to_dict() for usertherapist in UserTherapist.query.all()]
+        return make_response(user_therapists, 200)
+
+api.add_resource(UserTherapists, "/usertherapists")
 
 
 

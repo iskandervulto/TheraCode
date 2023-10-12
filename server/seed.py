@@ -8,7 +8,7 @@ from faker import Faker
 
 # Local imports
 from app import app
-from models import db, Injury, Strengthening, Mobility, Flexibility, User
+from models import db, Injury, Strengthening, Mobility, Flexibility, User, Therapist, UserTherapist
 
 if __name__ == '__main__':
     fake = Faker()
@@ -198,6 +198,19 @@ if __name__ == '__main__':
         db.session.add_all(flexibilities)
 
 
+        print("Seeding phsyical therapists")
+        therapists = [
+            Therapist(name="Ned", specialization="Strengthening"),
+            Therapist(name="Ted", specialization="Strengthening"),
+            Therapist(name="Fed", specialization="Mobility"),
+            Therapist(name="Red", specialization="Mobility"),
+            Therapist(name="Jed", specialization="Flexibility"),
+            Therapist(name="Ped", specialization="Flexibilty"),
+        ]
+
+        db.session.add_all(therapists)
+
+
         print("Seeding users")
         users = [
             User(username="Iskander", password="FinalProject123", injury=injuries[28], strengthening=strengthenings[1], flexibility=flexibilities[3], mobility=mobilities[4]),
@@ -206,6 +219,16 @@ if __name__ == '__main__':
 
         db.session.add_all(users)
 
+        db.session.commit()
+
+        print("Seeding user therapists")
+        user_therapists = [
+            UserTherapist(user_id=users[1].id, therapist_id=therapists[0].id),
+            UserTherapist(user_id=users[1].id, therapist_id=therapists[1].id),
+        ]
+
+        db.session.add_all(user_therapists)
+     
         db.session.commit()
 
 
