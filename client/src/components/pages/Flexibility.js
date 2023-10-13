@@ -34,7 +34,7 @@ const fetchAllFlexibilities = async () => {
     <header className="Flexibilities-header">
         <h1>Flexibilities</h1>
         {flexibilities.map((flexibility, index) => (
-          <div key={index} className='Flexibility-container'>
+          <div key={index} className='All-container'>
             <p>Part of Body: {flexibility.part_of_body}</p>
             <p>Movement: {flexibility.movement}</p>
             <p>Equipment: {flexibility.equipment}</p>

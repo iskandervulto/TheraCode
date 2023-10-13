@@ -11,10 +11,9 @@ function InjuryDropdownOptions({ type, onChange }) {
   }, [type]);
 
   const handleDropdownChange = (e) => {
-    const selectedValue = parseInt(e.target.value, 10); // Parse the selected value as an integer
+    const selectedValue = parseInt(e.target.value, 10);
     console.log(`Selected value for ${type}: ${selectedValue}`);
   
-    // Call the parent component's onChange function to update the form data with an integer value
     onChange(e, selectedValue);
   };
 

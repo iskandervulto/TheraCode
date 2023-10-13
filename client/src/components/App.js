@@ -11,9 +11,7 @@ import Mobility from './pages/Mobility'
 import Flexibility from './pages/Flexibility'
 import Profile from './pages/Profile'
 import SignUp from './pages/SignUp';
-import SignIn from './pages/SignIn';
 import NavBar  from "./NavBar"
-import { AuthProvider } from '../Contexts/AuthContext';
 
 export const ThemeContext = createContext(null)
 
@@ -27,7 +25,7 @@ const toggleTheme = () => {
 
   return (
   
-  <AuthProvider>
+ 
   <ThemeContext.Provider value={{ theme, toggleTheme }}>
     <div className="App" id={theme}>
     <NavBar />
@@ -41,11 +39,9 @@ const toggleTheme = () => {
       <Route path="/flexibility" element={<Flexibility />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/signup" element={<SignUp />} />
-      <Route path="/signin" element={<SignIn />} />
     </Routes>
     </div>
   </ThemeContext.Provider>
-  </AuthProvider>
   )
 }
 

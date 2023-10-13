@@ -153,6 +153,25 @@ class UserById(Resource):
         db.session.commit()
         return make_response({}, 204)
 
+    def patch(self, id):
+        user = User.query.filter(User.id == id).one_or_none()
+
+        if user is None:
+            return make_response({'error': 'User not found'}, 404)
+
+        fields = request.get_json()
+
+        try:
+            for field in fields:
+                setattr(user, field, fields[field])
+            db.session.add(user)
+            db.session.commit()
+
+            return make_response(user.to_dict(), 202)
+
+        except ValueError:
+            return make_response({"errors": ["validation errors"]}, 400)
+
 
 api.add_resource(UserById, "/users/<int:id>")
 
@@ -194,8 +213,6 @@ class UserTherapistById(Resource):
         return make_response(user_therapist.to_dict(), 200)
 
 api.add_resource(UserTherapistById, "/usertherapists/<int:id>")
-
-
 
 
 
