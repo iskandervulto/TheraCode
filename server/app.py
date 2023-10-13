@@ -162,9 +162,12 @@ class UserById(Resource):
         fields = request.get_json()
 
         try:
-            for field in fields:
-                setattr(user, field, fields[field])
-            db.session.add(user)
+            for field, value in fields.items():
+                if hasattr(user, field):
+                    setattr(user, field, value)
+                else:
+                    return make_response({'error': f'Invalid field: {field}'}, 400)
+
             db.session.commit()
 
             return make_response(user.to_dict(), 202)
