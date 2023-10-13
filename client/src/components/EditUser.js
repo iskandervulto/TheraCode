@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import InjuryDropdownOptions from './InjuryDropDownOptions'; // You may need to adjust the import path
-import DropdownOptions from './DropdownOptions'; // You may need to adjust the import path
+import InjuryDropdownOptions from './InjuryDropDownOptions'; 
+import DropdownOptions from './DropdownOptions'; 
 
 function EditUser({ option }) {
   const [formData, setFormData] = useState({
@@ -61,7 +61,7 @@ function EditUser({ option }) {
       });
 
       if (response.ok) {
-        // Handle successful PATCH request (e.g., update state or navigate)
+
         console.log('User updated successfully');
       } else {
         console.error('Error editing user:', response.statusText);

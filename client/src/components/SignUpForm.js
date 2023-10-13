@@ -49,7 +49,6 @@ function SignUpForm() {
   };
   
   
-
   const formDataWithIds = {
     ...formData,
     injury_id: injuryId,

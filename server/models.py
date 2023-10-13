@@ -145,6 +145,18 @@ class User(db.Model, SerializerMixin):
 
     serialize_rules = ("-injury.users", "-strengthening.users", "-mobility.users", "-flexibility.users", "-user_therapists")
 
+    @validates('username')
+    def validate_username(self, key, value):
+        if len(value) < 4:
+            raise ValueError("Username must be at least 4 characters long.")
+        return value
+
+    @validates('password')
+    def validate_password(self, key, value):
+        if len(value) < 4:
+            raise ValueError("Password must be at least 4 characters long.")
+        return value
+
     def __repr__(self):
         return f'<User {self.id}>'
 

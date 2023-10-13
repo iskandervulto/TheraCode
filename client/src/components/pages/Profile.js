@@ -102,7 +102,7 @@ const Profile = () => {
             <button onClick={() => handleEditUser(user.id)}>Edit</button>
             <button onClick={() => handleDeleteUser(user.id)}>Delete</button>
             {isEditing && selectedUserId === user.id && (
-              <EditUser option={user.id} key={user.id} /> // Pass user as the option
+              <EditUser option={user.id} key={user.id} />
             )}
           </div>
         ))}
