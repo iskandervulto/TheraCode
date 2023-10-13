@@ -196,45 +196,6 @@ class UserTherapistById(Resource):
 api.add_resource(UserTherapistById, "/usertherapists/<int:id>")
 
 
-@app.route('/signup', methods=['POST'])
-def register():
-    data = request.get_json()
-    username = data['username']
-    password = data['password']
-    
-    # Check if the username already exists
-    existing_user = User.query.filter_by(username=username).first()
-    if existing_user:
-        return jsonify({'message': 'Username already exists'}), 400
-
-    # Hash the password using bcrypt
-    hashed_password = bcrypt.generate_password_hash(password).decode('utf-8')
-
-    # Create a new User
-    new_user = User(username=username, password=hashed_password)
-
-    db.session.add(new_user)
-    db.session.commit()
-
-    return jsonify({'message': 'User registered successfully'}), 201
-
-@app.route('/signin', methods=['POST'])
-def login():
-    data = request.get_json()
-    username = data['username']
-    password = data['password']
-
-    # Find the user by username
-    user = User.query.filter_by(username=username).first()
-    if not user:
-        return jsonify({'message': 'User not found'}), 404
-
-    # Check if the password is valid
-    if bcrypt.check_password_hash(user.password, password):
-        return jsonify({'message': 'Login successful'}), 200
-    else:
-        return jsonify({'message': 'Invalid password'}), 401
-
 
 
 

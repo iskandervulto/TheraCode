@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
-import "./styles/Injury.css"
+import "./styles/AllPages.css"
 
 const Injury = () => {
 
@@ -33,7 +33,7 @@ const fetchAllInjuries = async () => {
     <header className="Injury-header">
         <h1>Injury</h1>
         {injuries.map((injury, index) => (
-          <div key={index}>
+          <div key={index} className="All-container">
             <div className="main">
             <p>{injury.part_of_body} {injury.type_of_injury}</p>
             </div>

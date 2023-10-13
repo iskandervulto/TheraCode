@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 
+import "./styles/AllPages.css"
 import LoginForm from '../LoginForm';
 
 const Profile = ( ) => {
@@ -32,29 +33,26 @@ const fetchAllUsers = async () => {
   }
 };
 
-  return (
-    <>
-    <div className="User">
+return (
+  <div className="User">
     <header className="User-header">
-        <h1>Profile</h1>
+      <h1>Profile</h1>
       <LoginForm />
+      {users.map((user, index) => (
+        <div key={index} className="All-container">
+          <p>Username: {user.username}</p>
+          <p>Password: {user.password}</p>
+          <p>Injury: {user.injury_id}</p>
+          <p>Strengthening: {user.strengthening_id}</p>
+          <p>Mobility: {user.mobility_id}</p>
+          <p>Flexibility: {user.flexibility_id}</p>
+        </div>
+      ))}
     </header>
-</div>
-
-  </>
-  )
-}
+  </div>
+);
+};
 
 export default Profile
 
 
-// {users.map((user, index) => (
-//   <div key={index}>
-//     <p>Username: {user.user_name}</p>
-//     <p>password: {user.password}</p>
-//     <p>injury: {user.injury_id}</p>
-//     <p>strengthening: {user.strengthening_id}</p>
-//     <p>mobility: {user.mobility_id}</p>
-//     <p>flexibility: {user.flexibility_id}</p>
-//   </div>
-// ))}

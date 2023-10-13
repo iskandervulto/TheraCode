@@ -1,25 +1,61 @@
 import React, { useState, useEffect } from 'react';
+import InjuryDropdownOptions from './InjuryDropDownOptions';
 import DropdownOptions from './DropdownOptions';
 
-function SignUpForm( { InjuryDropDown } ) {
+function SignUpForm() {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
-    injury_id: '',           
-    strengthening_id: '',   
-    mobility_id: '',        
-    flexibility_id: '',
   });
 
+  const [injuryId, setInjuryId] = useState(0);
+  const [strengtheningId, setStrengtheningId] = useState(0);
+  const [mobilityId, setMobilityId] = useState(0);
+  const [flexibilityId, setFlexibilityId] = useState(0);
 
   const handleChange = (e) => {
+    const selectedValue = e.target.value;
     const { name, value } = e.target;
+
+    console.log(selectedValue);
   
-    if (name === 'injury_id') {
-      setFormData({ ...formData, [name]: value });
-    } else {
+    if (name === "username" || name === "password") {
       setFormData({ ...formData, [name]: value });
     }
+  };
+
+  const handleInjuryChange = (e) => {
+    const selectedValue = e.target.value;
+    console.log(selectedValue);
+    setInjuryId(selectedValue);
+  };
+  
+  const handleStrengtheningChange = (e) => {
+    const selectedValue = e.target.value;
+    console.log(selectedValue);
+    setStrengtheningId(selectedValue);
+  };
+  
+  const handleMobilityChange = (e) => {
+    const selectedValue = e.target.value;
+    console.log(selectedValue);
+    setMobilityId(selectedValue);
+  };
+  
+  const handleFlexibilityChange = (e) => {
+    const selectedValue = e.target.value;
+    console.log(selectedValue);
+    setFlexibilityId(selectedValue);
+  };
+  
+  
+
+  const formDataWithIds = {
+    ...formData,
+    injury_id: injuryId,
+    strengthening_id: strengtheningId,
+    mobility_id: mobilityId,
+    flexibility_id: flexibilityId,
   };
 
 
@@ -27,28 +63,34 @@ function SignUpForm( { InjuryDropDown } ) {
     e.preventDefault();
   };
 
+  // POST HAPPENS HERE
+
   const handleSignup = (e) => {
     e.preventDefault();
-  
     try {
-
       const url = 'http://localhost:3000/users';
-  
   
       const requestData = {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData),
+        body: JSON.stringify({
+          username: formData.username,
+          password: formData.password,
+          injury_id: injuryId,
+          strengthening_id: strengtheningId,
+          mobility_id: mobilityId,
+          flexibility_id: flexibilityId,
+        })
       };
+    
   
       fetch(url, requestData)
         .then((response) => {
           if (response.ok) {
             return response.json();
           } else {
-      
             throw new Error('Server error: ' + response.statusText);
           }
         })
@@ -61,8 +103,8 @@ function SignUpForm( { InjuryDropDown } ) {
     } catch (error) {
       console.error('An error occurred while sending the request:', error);
     }
-
-  }
+  };
+  
 
   return (
     <div>
@@ -91,31 +133,27 @@ function SignUpForm( { InjuryDropDown } ) {
           />
         </div>
      
-      {/* DROP DOWNS START HERE */}
+           {/* DROP DOWNS START HERE */}
 
       <div>
-          <label htmlFor="injury_id">Injury:</label>
-          <DropdownOptions type="injuries" onChange={handleChange} />
-        </div>
+        <label htmlFor="injury_id">Injury:</label>
+        <InjuryDropdownOptions type="injuries" onChange={handleInjuryChange} />
+      </div>
 
-        {formData.injury_id && (
-          <>
-            <div>
-              <label htmlFor="strengthening_id">Strengthening:</label>
-              <DropdownOptions type="strengthening" onChange={handleChange} />
-            </div>
+      <div>
+        <label htmlFor="strengthening_id">Strengthening:</label>
+        <DropdownOptions type="strengthenings" onChange={handleStrengtheningChange} />
+      </div>
 
-            <div>
-              <label htmlFor="mobility_id">Mobility:</label>
-              <DropdownOptions type="mobility" onChange={handleChange} />
-            </div>
+      <div>
+        <label htmlFor="mobility_id">Mobility:</label>
+        <DropdownOptions type="mobilities" onChange={handleMobilityChange} />
+      </div>
 
-            <div>
-              <label htmlFor="flexibility_id">Flexibility:</label>
-              <DropdownOptions type="flexibility" onChange={handleChange} />
-            </div>
-          </>
-        )}
+      <div>
+        <label htmlFor="flexibility_id">Flexibility:</label>
+        <DropdownOptions type="flexibilities" onChange={handleFlexibilityChange} />
+      </div>
 
         {/* Button is here */}
         

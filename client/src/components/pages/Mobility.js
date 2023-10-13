@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
+import "./styles/AllPages.css"
+
 const Mobility = () => {
 
   const [mobilities, setMobilities] = useState([{
@@ -32,7 +34,7 @@ const fetchAllMobilities = async () => {
     <header className="Mobility-header">
         <h1>Mobility</h1>
         {mobilities.map((mobility, index) => (
-          <div key={index}>
+          <div key={index} className='All-container'>
             <p>Part of Body: {mobility.part_of_body}</p>
             <p>Movement: {mobility.movement}</p>
             <p>Equipment: {mobility.equipment}</p>
