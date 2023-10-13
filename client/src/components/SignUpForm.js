@@ -1,19 +1,27 @@
 import React, { useState, useEffect } from 'react';
+import DropdownOptions from './DropdownOptions';
 
-function SignUpForm() {
+function SignUpForm( { InjuryDropDown } ) {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
-    injury_id: null,           
-    strengthening_id: null,   
-    mobility_id: null,        
-    flexibility_id: null,
+    injury_id: '',           
+    strengthening_id: '',   
+    mobility_id: '',        
+    flexibility_id: '',
   });
+
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  
+    if (name === 'injury_id') {
+      setFormData({ ...formData, [name]: value });
+    } else {
+      setFormData({ ...formData, [name]: value });
+    }
   };
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -56,11 +64,6 @@ function SignUpForm() {
 
   }
 
-
-
-
-  
-
   return (
     <div>
       <h2>Sign Up</h2>
@@ -87,6 +90,35 @@ function SignUpForm() {
             required
           />
         </div>
+     
+      {/* DROP DOWNS START HERE */}
+
+      <div>
+          <label htmlFor="injury_id">Injury:</label>
+          <DropdownOptions type="injuries" onChange={handleChange} />
+        </div>
+
+        {formData.injury_id && (
+          <>
+            <div>
+              <label htmlFor="strengthening_id">Strengthening:</label>
+              <DropdownOptions type="strengthening" onChange={handleChange} />
+            </div>
+
+            <div>
+              <label htmlFor="mobility_id">Mobility:</label>
+              <DropdownOptions type="mobility" onChange={handleChange} />
+            </div>
+
+            <div>
+              <label htmlFor="flexibility_id">Flexibility:</label>
+              <DropdownOptions type="flexibility" onChange={handleChange} />
+            </div>
+          </>
+        )}
+
+        {/* Button is here */}
+        
         <div>
           <button type="submit" onClick={handleSignup}>Sign Up</button>
         </div>

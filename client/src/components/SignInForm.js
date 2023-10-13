@@ -11,7 +11,7 @@ function SignInForm() {
   }
 
   const handleLogin = () => {
-    axios.post('/login', formData)
+    axios.post('/signin', formData)
       .then((response) => {
         setToken(response.data.token);
       })
