@@ -1,7 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import InjuryDropdownOptions from './InjuryDropDownOptions';
 import DropdownOptions from './DropdownOptions';
-import ProgressBar from './ProgressBar';
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
