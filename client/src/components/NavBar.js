@@ -1,10 +1,14 @@
-import React, { useState } from 'react'; 
+import React, { useState, useContext } from 'react'; 
 import { NavLink, Link } from "react-router-dom"
+import { ThemeContext } from './App';
+import ReactSwitch from 'react-switch';
 import "./NavBar.css"
   
 const NavBar = () => { 
 
   const [menuOpen, setMenuOpen] = useState(false)
+
+  const { theme, toggleTheme } = useContext(ThemeContext)
 
   return (
     <nav>
@@ -35,6 +39,9 @@ const NavBar = () => {
         </li>
         <li>
           <NavLink to="/signup">Sign up</NavLink>
+        </li>
+        <li>
+        <ReactSwitch onChange={toggleTheme} checked={theme === "dark"}/>
         </li>
       </ul>
     </nav>

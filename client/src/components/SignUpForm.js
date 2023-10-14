@@ -1,12 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import InjuryDropdownOptions from './InjuryDropDownOptions';
 import DropdownOptions from './DropdownOptions';
+import ProgressBar from './ProgressBar';
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
     username: '',
     password: '',
   });
+
 
   const [injuryId, setInjuryId] = useState(0);
   const [strengtheningId, setStrengtheningId] = useState(0);
@@ -106,7 +108,7 @@ function SignUpForm() {
   
 
   return (
-    <div>
+    <div className='All-container'>
       <h2>Sign Up</h2>
       <form onSubmit={handleSubmit}>
         <div>

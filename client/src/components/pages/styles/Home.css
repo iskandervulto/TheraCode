@@ -1,0 +1,42 @@
+
+
+.landing {
+    background: linear-gradient(to bottom, #3498db, #2980b9);
+    color: #fff;
+    text-align: center;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .landing-header {
+    max-width: 600px;
+  }
+  
+  .landing-title {
+    font-size: 48px;
+    margin-bottom: 20px;
+  }
+  
+  .landing-description {
+    font-size: 24px;
+    margin-bottom: 30px;
+  }
+  
+  .cta-button {
+    display: inline-block;
+    background-color: #e74c3c;
+    color: #fff;
+    font-size: 20px;
+    padding: 15px 30px;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.2s;
+  }
+  
+  .cta-button:hover {
+    background-color: #c0392b;
+  }
+  

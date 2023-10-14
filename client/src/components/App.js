@@ -29,7 +29,6 @@ const toggleTheme = () => {
   <ThemeContext.Provider value={{ theme, toggleTheme }}>
     <div className="App" id={theme}>
     <NavBar />
-    <ReactSwitch onChange={toggleTheme} checked={theme === "dark"}/>
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/about" element={<About />} />
