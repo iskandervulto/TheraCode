@@ -13,6 +13,7 @@ const Profile = () => {
       strengthening: "",
       mobility: "",
       flexibility: "",
+      therapist: ""
     },
   ]);
 

@@ -9,6 +9,7 @@ import About from './pages/About'
 import Strength from './pages/Strength'
 import Mobility from './pages/Mobility'
 import Flexibility from './pages/Flexibility'
+import Therapists from './pages/Therapists';
 import Profile from './pages/Profile'
 import SignUp from './pages/SignUp';
 import NavBar  from "./NavBar"
@@ -36,6 +37,7 @@ const toggleTheme = () => {
       <Route path="/strength" element={<Strength />} />
       <Route path="/mobility" element={<Mobility />} />
       <Route path="/flexibility" element={<Flexibility />} />
+      <Route path="/therapists" element={<Therapists />} />
       <Route path="/profile" element={<Profile />} />
       <Route path="/signup" element={<SignUp />} />
     </Routes>
