@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import InjuryDropdownOptions from './InjuryDropDownOptions';
 import DropdownOptions from './DropdownOptions';
+import ProgressBar from './ProgressBar';
 
 function SignUpForm() {
   const [formData, setFormData] = useState({
@@ -13,6 +14,21 @@ function SignUpForm() {
   const [strengtheningId, setStrengtheningId] = useState(0);
   const [mobilityId, setMobilityId] = useState(0);
   const [flexibilityId, setFlexibilityId] = useState(0);
+
+  const [formProgress, setFormProgress] = useState(0);
+
+  const progressBarVariants = {
+    initial: { width: '0%' },
+    animate: { width: `${formProgress}%` },
+  };
+
+  const updateFormProgress = () => {
+    // Calculate the progress based on your form fields
+    // For example, if all fields are completed, set it to 100%
+    const progress =
+    setFormProgress(progress);
+  };
+
 
   const handleChange = (e) => {
     const selectedValue = e.target.value;
@@ -84,7 +100,6 @@ function SignUpForm() {
           flexibility_id: flexibilityId,
         })
       };
-    
   
       fetch(url, requestData)
         .then((response) => {
@@ -100,6 +115,7 @@ function SignUpForm() {
         .catch((error) => {
           console.error('An error occurred while sending the request:', error);
         });
+        updateFormProgress()
     } catch (error) {
       console.error('An error occurred while sending the request:', error);
     }

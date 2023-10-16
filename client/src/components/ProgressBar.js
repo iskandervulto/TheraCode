@@ -1,19 +1,15 @@
 import React from 'react';
-import { useSpring, animated } from 'react-spring';
+import { motion } from 'framer-motion';
 
-
-const ProgressBar = ({ progress }) => {
-  const width = useSpring({ width: `${progress}%` });
+function ProgressBar({ formProgress }) {
+  const progressBarVariants = {
+    initial: { width: '0%' },
+    animate: { width: `${formProgress}%` },
+  };
 
   return (
-    <>
-    <div className="progress-bar">
-      <animated.div className="progress-bar-fill" style={width} />
-    </div>
-    <div>
-    </div>
-    </>
+    <motion.div className="progress-bar" initial="initial" animate="animate" variants={progressBarVariants}></motion.div>
   );
-};
+}
 
 export default ProgressBar;
