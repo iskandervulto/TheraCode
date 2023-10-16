@@ -95,7 +95,6 @@ const Therapists = () => {
 
 
     const handleAddUserClick = (therapist) => {
-        // Toggle the visibility of the user dropdown when the button is clicked
         setSelectedTherapist(therapist);
         setShowUserDropdown(true);
       };
@@ -104,14 +103,12 @@ const Therapists = () => {
     const handleUserSelect = (event) => {
         const selectedUserId = event.target.value;
         setSelectedUser(selectedUserId);
-    
-        // Show the submit button when a user is selected
+  
         setShowSubmitButton(true);
       };
     
       const handleUserSubmit = (therapist) => {
         if (selectedUser && therapist) {
-          // Make a POST request to add the user and therapist IDs to the user therapist table
           fetch('http://localhost:3000/usertherapists', {
             method: 'POST',
             headers: {
@@ -124,7 +121,7 @@ const Therapists = () => {
           })
             .then((response) => response.json())
             .then((data) => {
-              // Handle success or error as needed
+      
               console.log('User therapist added:', data);
             })
             .catch((error) => {
@@ -140,7 +137,6 @@ const Therapists = () => {
           <header className="Therapist-header">
             <h1>Therapists</h1>
             {therapists.map((therapist) => {
-              // Find the user therapist associated with this therapist
               const userTherapist = userTherapists.find(
                 (userTherapist) => userTherapist.therapist_id === therapist.id
               );
